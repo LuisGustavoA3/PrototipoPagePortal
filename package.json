@@ -1,0 +1,7 @@
+{
+  "name": "portal-a3",
+  "private": true,
+  "scripts": {
+    "dev": "node preview.mjs"
+  }
+}

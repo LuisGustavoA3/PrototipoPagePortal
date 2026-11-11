@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Hub modular do Portal A3" />
     <title>A3 Portal | Hub</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
       :root { --bg:#101216; --surface:#181b21; --surface-2:#20242b; --ink:#f8f7f2; --muted:#a7aeb9; --line:#303640; --accent:#ff7420; --accent-soft:#ff9c5c; --olive:#666b56; --cream:#f4f3ef; --shadow:0 18px 45px rgba(0,0,0,.22); }
@@ -15,22 +16,296 @@
       .actions { display:flex; align-items:center; gap:10px; } .outline, .avatar, .theme { border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:12px; height:40px; transition:.2s transform,.2s border,.2s background; } .outline { padding:0 14px; font-weight:700; font-size:13px; } .outline:hover,.theme:hover { transform:translateY(-2px); border-color:var(--accent); } .theme { width:40px; font-size:18px; } .avatar { display:flex; align-items:center; gap:9px; padding:4px 12px 4px 5px; } .avatar b { width:29px; height:29px; display:grid; place-items:center; border-radius:9px; background:var(--accent); color:white; font-size:11px; }.avatar span { font-size:12px; text-align:left; line-height:1.1; }.avatar small { display:block; color:var(--muted); font-size:10px; margin-top:3px; }
       .welcome { position:relative; overflow:hidden; background:linear-gradient(112deg,#4d5142 0%,#565646 45%,#60492f 100%); border-radius:22px; padding:38px 40px 28px; min-height:240px; box-shadow:var(--shadow); } .welcome::before { content:''; position:absolute; inset:0; opacity:.21; background-image:linear-gradient(rgba(255,255,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.22) 1px,transparent 1px); background-size:34px 34px; } .welcome::after { content:'✦'; position:absolute; font-size:260px; right:8%; top:-65px; color:rgba(255,116,32,.13); }.welcome > * { position:relative; z-index:1; }.eyebrow { color:#ff9c5c; text-transform:uppercase; letter-spacing:.14em; font-size:11px; font-weight:700; }.welcome h1 { font-family:Manrope; font-size:34px; letter-spacing:-1.5px; margin:9px 0 7px; }.welcome p { margin:0; color:#f1e8dc; font-size:15px; }.company-switch { display:flex; justify-content:space-between; align-items:center; margin-top:37px; padding-top:17px; border-top:1px solid rgba(255,255,255,.16); gap:16px; }.company-switch span { font-size:12px; font-weight:700; }.chips { display:flex; gap:8px; flex-wrap:wrap; }.chip { background:rgba(25,28,23,.27); border:1px solid rgba(255,255,255,.22); color:white; padding:8px 13px; border-radius:10px; font-weight:700; font-size:12px; transition:.2s; }.chip:hover,.chip.active { background:var(--accent); border-color:var(--accent); transform:translateY(-2px); }
       .section-head { display:flex; align-items:end; justify-content:space-between; margin:36px 0 18px; }.section-head h2 { font-family:Manrope; margin:4px 0 0; font-size:23px; letter-spacing:-.8px; }.section-head p { color:var(--muted); margin:5px 0 0; font-size:14px; }.count { text-align:right; color:var(--muted); font-size:12px; }.count strong { display:block; color:var(--accent); font-size:25px; font-family:Manrope; }
-      .module-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }.module { position:relative; min-height:255px; padding:22px; border:1px solid var(--line); background:var(--surface); border-radius:18px; overflow:hidden; transition:transform .25s,box-shadow .25s,border .25s; }.module::before { content:''; position:absolute; width:50px; height:50px; border:12px solid var(--bg); border-radius:50%; right:-25px; top:42%; }.module::after { content:''; position:absolute; width:50px; height:50px; border:12px solid var(--bg); border-radius:50%; left:-25px; top:42%; }.module:hover { transform:translateY(-6px); border-color:var(--accent); box-shadow:var(--shadow); }.module.open { background:linear-gradient(145deg,var(--surface),color-mix(in srgb,var(--olive) 17%,var(--surface))); }.iconbox { width:47px; height:47px; display:grid; place-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:14px; color:var(--accent); }.iconbox svg{width:21px;height:21px}.status { margin-top:24px; display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:12px; }.dot { width:7px;height:7px;border-radius:50%;background:#96a17c; }.module h3 { font-family:Manrope; margin:14px 0 6px; font-size:18px; }.module p { font-size:13px; color:var(--muted); margin:0; line-height:1.5; }.module a { display:inline-flex; align-items:center; gap:7px; margin-top:22px; color:var(--accent-soft); font-weight:700; text-decoration:none; font-size:13px; }.locked { opacity:.75; }.locked .iconbox { color:#9ca4af; }.locked a { color:var(--muted); }.admin { margin-top:18px; display:flex; justify-content:space-between; align-items:center; gap:18px; padding:20px 24px; border:1px solid var(--line); border-radius:17px; background:var(--surface); }.admin-copy { display:flex; gap:14px; align-items:center; }.admin-copy h3 { margin:0; font-size:16px; }.admin-copy p { margin:4px 0 0; color:var(--muted); font-size:13px; }.admin-actions { display:flex; gap:8px; flex-wrap:wrap; }.admin-actions button { padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:transparent; color:var(--ink); font-size:12px; font-weight:700; transition:.2s; }.admin-actions button:hover { border-color:var(--accent); color:var(--accent); }
+      .module-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+      .module { position:relative; min-width:0; min-height:255px; padding:24px; border:1px solid var(--line); background:var(--surface); border-radius:18px; transition:transform .25s,box-shadow .25s,border-color .25s; }
+      .module:hover,.module:focus-within { transform:translateY(-4px); border-color:var(--accent); box-shadow:var(--shadow); }
+      .module h3,.module p,.module a { overflow-wrap:anywhere; }
+      .module a { max-width:100%; }
+      .module a svg,.module .status svg { flex-shrink:0; width:18px; height:18px; }
+      .iconbox { width:47px; height:47px; display:grid; place-items:center; background:var(--surface-2); border:1px solid var(--line); border-radius:14px; color:var(--accent); }.iconbox svg{width:21px;height:21px}.status { margin-top:24px; display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:12px; }.dot { width:7px;height:7px;border-radius:50%;background:#96a17c; }.module h3 { font-family:Manrope; margin:14px 0 6px; font-size:18px; }.module p { font-size:13px; color:var(--muted); margin:0; line-height:1.5; }.module a { display:inline-flex; align-items:center; gap:7px; margin-top:22px; color:var(--accent-soft); font-weight:700; text-decoration:none; font-size:13px; }.locked { opacity:.75; }.locked .iconbox { color:#9ca4af; }.locked a { color:var(--muted); }.admin { margin-top:18px; display:flex; justify-content:space-between; align-items:center; gap:18px; padding:20px 24px; border:1px solid var(--line); border-radius:17px; background:var(--surface); }.admin-copy { display:flex; gap:14px; align-items:center; }.admin-copy h3 { margin:0; font-size:16px; }.admin-copy p { margin:4px 0 0; color:var(--muted); font-size:13px; }.admin-actions { display:flex; gap:8px; flex-wrap:wrap; }.admin-actions button { padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:transparent; color:var(--ink); font-size:12px; font-weight:700; transition:.2s; }.admin-actions button:hover { border-color:var(--accent); color:var(--accent); }
       @media (max-width:800px) { .shell{padding:20px}.topbar{align-items:flex-start}.avatar span,.outline{display:none}.module-grid{grid-template-columns:1fr}.welcome{padding:30px 24px}.company-switch,.admin{align-items:flex-start;flex-direction:column}.welcome h1{font-size:28px}.actions{gap:7px}.section-head{align-items:flex-start}.admin-actions{width:100%} }
+    /* Identidade oficial A3 Digital: assets originais. */
+      .brand-logo { display:flex; align-items:center; padding:8px 12px; border-radius:12px; background:#f4f3ef; flex-shrink:0; }
+      .brand-logo img { display:block; width:132px; height:auto; }
+      .welcome::after { content:''; width:220px; height:220px; right:5%; top:0; background:url('assets/images/a3digital-cube.svg') center / contain no-repeat; opacity:.16; pointer-events:none; }
+      @media (max-width:800px) { .brand { gap:9px; } .brand-logo { padding:7px 9px; } .brand-logo img { width:96px; } .portal { font-size:10px; } .welcome::after { width:160px; height:160px; right:-24px; top:8px; opacity:.10; } }
+
+      /* Boas-vindas: movimento suave e cores por tema. */
+      .welcome { animation:welcome-enter .7s ease-out both; }
+      .welcome::before { animation:welcome-grid 24s linear infinite; pointer-events:none; }
+      .welcome::after { animation:welcome-float 8s ease-in-out infinite; }
+      .welcome > .eyebrow,.welcome > h1,.welcome > p { animation:welcome-enter .65s ease-out both; }
+      .welcome > h1 { animation-delay:.08s; }
+      .welcome > p { animation-delay:.16s; }
+      [data-theme="light"] { --olive:#ec914a; --ink:#252525; --muted:#6c6863; --line:#e5dfd8; --accent-soft:#b74908; }
+      [data-theme="light"] .welcome { background:linear-gradient(112deg,#fff8f0 0%,#ffe8d1 55%,#ffd2ad 100%); color:#442810; }
+      [data-theme="light"] .welcome p { color:#765235; }
+      [data-theme="light"] .welcome .eyebrow { color:#ae4406; }
+      [data-theme="light"] .welcome::before { background-image:linear-gradient(rgba(170,85,26,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(170,85,26,.16) 1px,transparent 1px); }
+      [data-theme="light"] .company-switch { border-color:rgba(130,66,20,.18); }
+      [data-theme="light"] .chip { background:rgba(255,255,255,.6); border-color:rgba(130,66,20,.22); color:#653716; }
+      [data-theme="light"] .chip:hover,[data-theme="light"] .chip.active { background:#b74908; border-color:#b74908; color:white; }
+      [data-theme="light"] .dot { background:#da6b20; }
+      @keyframes welcome-enter { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+      @keyframes welcome-grid { to { background-position:34px 34px; } }
+      @keyframes welcome-float { 0%,100% { transform:translateY(0) rotate(-3deg); } 50% { transform:translateY(12px) rotate(3deg); } }
+      @media (prefers-reduced-motion:reduce) { .welcome,.welcome::before,.welcome::after,.welcome > .eyebrow,.welcome > h1,.welcome > p { animation:none; } .module { transition:none; } .module:hover,.module:focus-within { transform:none; } }
+
+      .welcome::before { content:none; }
+      .welcome::after { opacity:.07; animation:none; }
+      .welcome > .constellation { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+      @media (max-width:800px) { .welcome::after { opacity:.05; } }
+
+      /* Navegação e camadas interativas. */
+      .theme { display:grid; place-items:center; flex-shrink:0; }
+      .theme svg { width:19px; height:19px; }
+      .help-trigger { font-weight:700; font-size:19px; }
+      .account-wrap,.notification-wrap { position:relative; }
+      .topbar { position:relative; z-index:5; }
+      .popover { position:absolute; top:calc(100% + 10px); right:0; width:260px; padding:8px; border:1px solid var(--line); border-radius:15px; background:var(--surface); color:var(--ink); box-shadow:var(--shadow); }
+      [hidden] { display:none !important; }
+      .account-summary { padding:9px 12px 15px; border-bottom:1px solid var(--line); margin-bottom:5px; }
+      .account-summary strong { font-size:13px; } .account-summary small { display:block; margin-top:6px; color:var(--muted); font-size:11px; }
+      .account-menu > button { display:flex; gap:10px; align-items:center; width:100%; border:0; border-radius:8px; padding:11px 12px; background:transparent; color:var(--ink); text-align:left; font-size:13px; }
+      .account-menu > button:hover,.account-menu > button:focus-visible { background:var(--surface-2); }
+      .account-menu svg { width:17px; height:17px; }
+      .account-menu .signout { border-top:1px solid var(--line); border-radius:0 0 8px 8px; margin-top:4px; }
+      .notification-panel { width:300px; padding:20px; }
+      .notification-panel h2 { margin:0; font-size:16px; }
+      .empty-notifications { text-align:center; padding:26px 0 12px; color:var(--muted); }
+      .empty-notifications svg { width:26px; height:26px; color:var(--accent); }
+      .empty-notifications p { font-size:13px; } .empty-notifications small { font-size:11px; }
+      .welcome { --pointer-x:0px; --pointer-y:0px; }
+      .welcome::after { content:none; }
+      .welcome > .constellation { transform:translate3d(var(--pointer-x),var(--pointer-y),0) scale(1.08); transition:transform .5s ease-out; }
+      .welcome > .welcome-logo { position:absolute; right:48px; top:32px; padding:18px 22px; background:#f4f3ef; border:1px solid rgba(255,255,255,.3); border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.08); transform:translate3d(var(--pointer-x),var(--pointer-y),0); transition:transform .5s ease-out; }
+      .welcome-logo img { display:block; width:216px; height:auto; }
+      .welcome h1,.welcome > p { max-width:calc(100% - 310px); }
+      .module { cursor:pointer; }
+      .module a::after { content:''; position:absolute; inset:0; border-radius:18px; }
+      .module a:focus-visible { outline:none; }
+      .module:has(a:focus-visible) { outline:2px solid var(--accent); outline-offset:4px; }
+      .dot,[data-theme="light"] .dot { background:#61d294; box-shadow:0 0 5px rgba(97,210,148,.45),0 0 10px rgba(97,210,148,.18); }
+      .portal-dialog { width:min(820px,calc(100% - 32px)); max-height:calc(100dvh - 48px); padding:28px; border:1px solid var(--line); border-radius:22px; background:var(--bg); color:var(--ink); box-shadow:0 24px 100px rgba(0,0,0,.35); }
+      .portal-dialog::backdrop { background:rgba(5,8,12,.65); backdrop-filter:blur(5px); }
+      .dialog-header { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:20px; }
+      .dialog-header h2 { font-family:Manrope,sans-serif; font-size:22px; margin:0; letter-spacing:-.5px; }
+      .dialog-close { display:grid; place-items:center; width:36px; height:36px; flex-shrink:0; font-size:25px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--ink); }
+      .portal-dialog p { font-size:14px; line-height:1.7; }
+      .portal-dialog h3 { font-size:16px; margin:0 0 20px; }
+      .help-content { padding:24px; background:var(--surface); border:1px solid var(--line); border-radius:15px; }
+      .module-help { margin-top:26px; } .module-help h3 { margin-bottom:10px; }
+      .dialog-actions { display:flex; gap:9px; flex-wrap:wrap; margin-top:18px; }
+      .dialog-actions button { padding:12px 16px; border:1px solid var(--line); border-radius:11px; background:var(--surface); color:var(--ink); font-size:13px; font-weight:700; }
+      .dialog-actions .primary { background:var(--accent); border-color:var(--accent); color:#17110a; }
+      button:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+      .compact-dialog { max-width:440px; }
+      .profile-details { display:flex; gap:16px; align-items:center; padding:14px 0; }
+      .profile-details p { margin:4px 0; color:var(--muted); }
+      .profile-initials { display:grid; place-items:center; width:56px; height:56px; border-radius:16px; background:var(--accent); color:white; font-weight:700; }
+      html:has(dialog[open]) { overflow:hidden; }
+      @media (max-width:800px) { .welcome > .welcome-logo { position:relative; top:auto; right:auto; width:fit-content; margin-bottom:20px; padding:12px 16px; } .welcome-logo img { width:160px; } .welcome h1,.welcome > p { max-width:100%; } .welcome > .welcome-logo { order:-1; } .welcome { display:flex; flex-direction:column; } .company-switch { margin-top:28px; } .notification-panel { right:-90px; width:min(300px,calc(100vw - 40px)); } .portal-dialog { padding:20px; } .help-content { padding:18px; } }
+      @media (max-width:420px) { .shell { padding:16px; } .topbar { gap:8px; } .brand-logo img { width:76px; } .brand .divider,.brand .portal { display:none; } .actions { gap:5px; } .theme { width:36px; height:36px; } .avatar { height:36px; padding-right:5px; } }
+      @media (prefers-reduced-motion:reduce) { .welcome > .welcome-logo,.welcome > .constellation { transform:none; transition:none; } }
+
+      /* SVGs transparentes, com contraste adequado a cada tema. */
+      .brand-logo { background:transparent; padding:0; border-radius:0; }
+      .logo-light { display:none !important; }
+      .logo-dark { display:block !important; }
+      [data-theme="light"] .logo-light { display:block !important; }
+      [data-theme="light"] .logo-dark { display:none !important; }
+      .welcome > .welcome-logo { background:transparent; border:0; box-shadow:none; padding:0; top:16px; right:54px; }
+      .welcome-logo img { width:190px; height:190px; object-fit:contain; opacity:.85; }
+      @media (max-width:800px) { .brand-logo { padding:0; } .welcome > .welcome-logo { top:auto; right:auto; position:relative; margin-bottom:14px; } .welcome-logo img { width:124px; height:124px; } }
+
+      .welcome > .constellation { transform:translate3d(var(--pointer-x),var(--pointer-y),0) scale(1.14); transition:transform .25s ease-out; }
+      .welcome > .welcome-logo { transition:transform .25s ease-out; }
+      @media (prefers-reduced-motion:reduce) { .welcome > .constellation,.welcome > .welcome-logo { transform:none; transition:none; } }
     </style>
   </head>
   <body>
     <main class="shell">
-      <header class="topbar"><div class="brand"><div class="brand-mark">A3</div><div class="divider"></div><span class="portal">PORTAL</span></div><div class="actions"><button class="outline">Ajuda e instruções</button><button class="theme" id="themeToggle" aria-label="Alternar tema">☼</button><button class="avatar"><b>LG</b><span>Luis Gustavo<small>Consultor A3</small></span></button></div></header>
-      <section class="welcome"><div class="eyebrow">Portal A3 Digital</div><h1>Olá, Luis. Vamos conectar as próximas peças?</h1><p>Escolha um ambiente para organizar pessoas, conhecimento e resultados.</p><div class="company-switch"><span>Trocar empresa</span><div class="chips"><button class="chip active">A3 Consultoria</button><button class="chip">Empresa 1</button><button class="chip">Empresa 2</button><button class="chip">TECPAV</button></div></div></section>
-      <section><div class="section-head"><div><div class="eyebrow">Seu ambiente</div><h2>Módulos da A3 Consultoria</h2><p>Cada módulo é uma peça que completa a sua gestão.</p></div><div class="count"><strong>3</strong>módulos disponíveis</div></div>
+      <header class="topbar"><div class="brand"><div class="brand-logo"><img class="logo-light" src="assets/images/a3digital.svg" alt="A3 Digital" width="132" height="56" /><img class="logo-dark" src="assets/images/a3digital-dark.svg" alt="A3 Digital" width="132" height="56" /></div><div class="divider"></div><span class="portal">PORTAL</span></div><div class="actions"><button class="theme help-trigger" id="helpTrigger" aria-label="Ajuda e instruções" aria-haspopup="dialog">?</button><div class="notification-wrap"><button class="theme" id="notificationTrigger" aria-label="Notificações" aria-expanded="false" aria-controls="notificationPanel"><i data-lucide="bell"></i></button><section class="popover notification-panel" id="notificationPanel" aria-labelledby="notificationTitle" hidden><h2 id="notificationTitle">Notificações</h2><div class="empty-notifications"><i data-lucide="bell"></i><p>Nenhuma notificação por enquanto.</p><small>As novidades do portal aparecerão aqui.</small></div></section></div><button class="theme" id="themeToggle" aria-label="Alternar tema">☼</button><div class="account-wrap"><button class="avatar" id="accountTrigger" aria-expanded="false" aria-controls="accountMenu"><b>LG</b><span>Luis Gustavo<small>Consultor A3</small></span></button><div class="popover account-menu" id="accountMenu" hidden><div class="account-summary"><strong>Luis Gustavo</strong><small>Consultor A3</small></div><button data-dialog="profileDialog"><i data-lucide="user-round"></i>Perfil</button><button data-dialog="preferencesDialog"><i data-lucide="settings-2"></i>Preferências</button><button data-dialog="signoutDialog" class="signout"><i data-lucide="log-out"></i>Sair</button></div></div></div></header>
+      <section class="welcome"><canvas class="constellation" aria-hidden="true"></canvas><div class="eyebrow">Portal A3 Digital</div><h1>Bem-vindo ao Portal A3</h1><p>Escolha um ambiente para organizar pessoas, conhecimento e resultados.</p><div class="welcome-logo" aria-hidden="true"><img class="logo-light" src="assets/images/a3digital-cube.svg" alt="" width="190" height="190" /><img class="logo-dark" src="assets/images/a3digital-cube-dark.svg" alt="" width="190" height="190" /></div><div class="company-switch"><span>Selecione empresa</span><div class="chips"><button class="chip active">A3 Consultoria</button><button class="chip">Empresa 1</button><button class="chip">Empresa 2</button><button class="chip">TECPAV</button></div></div></section>
+      <section id="modules" tabindex="-1"><div class="section-head"><div><div class="eyebrow">Seu ambiente</div><h2>Módulos da A3 Consultoria</h2><p>Cada módulo é uma peça que completa a sua gestão.</p></div><div class="count"><strong>3</strong>módulos disponíveis</div></div>
       <div class="module-grid">
-        <article class="module open"><div class="iconbox"><i data-lucide="handshake"></i></div><div class="status"><i class="dot"></i>Acesso liberado</div><h3>Mentorias</h3><p>Desenvolvimento guiado por jornadas, sessões e planos de ação.</p><a href="#">Acessar módulo <i data-lucide="arrow-right"></i></a></article>
-        <article class="module locked"><div class="iconbox"><i data-lucide="landmark"></i></div><div class="status"><i data-lucide="lock-keyhole"></i> Acesso restrito</div><h3>Gestão de Comitês</h3><p>Organize pautas, decisões e rituais de governança.</p><a href="#">Fale com o administrador <i data-lucide="lock-keyhole"></i></a></article>
-        <article class="module open"><div class="iconbox"><i data-lucide="book-open-check"></i></div><div class="status"><i class="dot"></i>Acesso liberado</div><h3>Capacitação</h3><p>Conteúdos e trilhas para fortalecer competências.</p><a href="#">Acessar módulo <i data-lucide="arrow-right"></i></a></article>
+        <article class="module open"><div class="iconbox"><i data-lucide="handshake"></i></div><div class="status"><i class="dot"></i>Acesso liberado</div><h3>Mentorias</h3><p>Desenvolvimento guiado por jornadas, sessões e planos de ação.</p><a href="#" aria-label="Acessar módulo Mentorias">Acessar módulo <i data-lucide="arrow-right"></i></a></article>
+        <article class="module locked"><div class="iconbox"><i data-lucide="landmark"></i></div><div class="status"><i data-lucide="lock-keyhole"></i> Acesso restrito</div><h3>Gestão de Comitês</h3><p>Organize pautas, decisões e rituais de governança.</p><a href="#ajuda" data-help aria-label="Ajuda para acessar Gestão de Comitês">Fale com o administrador <i data-lucide="lock-keyhole"></i></a></article>
+        <article class="module open"><div class="iconbox"><i data-lucide="book-open-check"></i></div><div class="status"><i class="dot"></i>Acesso liberado</div><h3>Capacitação</h3><p>Conteúdos e trilhas para fortalecer competências.</p><a href="#" aria-label="Acessar módulo Capacitação">Acessar módulo <i data-lucide="arrow-right"></i></a></article>
       </div></section>
-      <section class="admin"><div class="admin-copy"><div class="iconbox"><i data-lucide="shield-check"></i></div><div><h3>Administração</h3><p>Gerencie empresas, usuários e acessos em um ambiente separado.</p></div></div><div class="admin-actions"><button>Gestão da plataforma</button><button>Gestão da empresa</button><button>Visão geral da gestão</button></div></section>
+      <section class="admin" id="administration" tabindex="-1"><div class="admin-copy"><div class="iconbox"><i data-lucide="shield-check"></i></div><div><h3>Administração</h3><p>Gerencie empresas, usuários e acessos em um ambiente separado.</p></div></div><div class="admin-actions"><button>Gestão da plataforma</button><button>Gestão da empresa</button><button>Visão geral da gestão</button></div></section>
     </main>
-    <script src="https://unpkg.com/lucide@latest"></script><script>lucide.createIcons();const toggle=document.getElementById('themeToggle'); const saved=localStorage.getItem('a3-theme'); if(saved)document.documentElement.dataset.theme=saved; function draw(){const light=document.documentElement.dataset.theme==='light';toggle.textContent=light?'☾':'☼';}draw();toggle.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='light'?'dark':'light';localStorage.setItem('a3-theme',document.documentElement.dataset.theme);draw();});document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{document.querySelector('.chip.active').classList.remove('active');c.classList.add('active')}));</script>
+    <dialog id="helpDialog" class="portal-dialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">Ajuda e instruções</h2><button class="dialog-close" data-close aria-label="Fechar ajuda" autofocus>×</button></div><section class="help-content"><h3>Seu uso da plataforma</h3><p>Acompanhe as empresas da sua carteira. Selecione uma empresa para atuar em seus módulos e usuários.</p><p>O início do Portal reúne seus módulos. Escolha um para abrir seu ambiente de trabalho e use “Trocar módulo” para voltar. A gestão da plataforma e da empresa fica em um ambiente administrativo separado.</p><p>A conta é única; empresa, acesso ao módulo e participação em seus recursos são permissões diferentes.</p><p>Perfil e preferências ficam no menu da conta. Na tela de login, use “Esqueci minha senha” para recuperar o acesso.</p><div class="dialog-actions"><button class="primary" data-scroll="modules">Ir para meus módulos</button><button data-scroll="administration">Abrir gestão</button></div></section><section class="module-help"><h3>Ajuda dos meus módulos</h3><p>Selecione uma empresa com acesso a módulos ou solicite acesso ao gestor.</p></section></dialog>
+    <dialog id="profileDialog" class="portal-dialog compact-dialog" aria-labelledby="profileTitle"><div class="dialog-header"><h2 id="profileTitle">Perfil</h2><button class="dialog-close" data-close aria-label="Fechar perfil">×</button></div><div class="profile-details"><span class="profile-initials">LG</span><div><strong>Luis Gustavo</strong><p>Consultor A3</p></div></div></dialog>
+    <dialog id="preferencesDialog" class="portal-dialog compact-dialog" aria-labelledby="preferencesTitle"><div class="dialog-header"><h2 id="preferencesTitle">Preferências</h2><button class="dialog-close" data-close aria-label="Fechar preferências">×</button></div><p>Escolha a aparência do portal.</p><div class="dialog-actions"><button data-theme-choice="light">Tema claro</button><button data-theme-choice="dark">Tema escuro</button></div></dialog>
+    <dialog id="signoutDialog" class="portal-dialog compact-dialog" aria-labelledby="signoutTitle"><div class="dialog-header"><h2 id="signoutTitle">Sair do portal</h2><button class="dialog-close" data-close aria-label="Fechar">×</button></div><p>O encerramento de sessão estará disponível quando o acesso à conta estiver conectado.</p><div class="dialog-actions"><button data-close>Voltar ao portal</button></div></dialog>
+
+    <script src="https://unpkg.com/lucide@latest"></script><script>window.lucide?.createIcons();const toggle=document.getElementById('themeToggle'); const saved=localStorage.getItem('a3-theme'); if(saved)document.documentElement.dataset.theme=saved; function draw(){const light=document.documentElement.dataset.theme==='light';toggle.innerHTML=light ? '<svg viewBox="0 0 24 24" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13a9 9 0 1 1-9.9-9.9A7 7 0 0 0 20.9 13Z"/></svg>' : '<i data-lucide="sun"></i>';toggle.title=light?'Ativar modo escuro':'Ativar modo claro';window.lucide?.createIcons();}draw();toggle.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='light'?'dark':'light';localStorage.setItem('a3-theme',document.documentElement.dataset.theme);draw();});</script>
+  <script>
+(() => {
+  const canvas = document.querySelector('.constellation');
+  const context = canvas.getContext('2d');
+  if (!context) return;
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  // Posições, trajetórias e ritmos independentes evitam padrões de grade.
+  const stars = Array.from({length:62}, () => ({
+    x:Math.random(), y:Math.random(), phase:Math.random()*Math.PI*2,
+    vx:(Math.random()<.5 ? -1 : 1)*(7+Math.random()*13),
+    vy:(Math.random()-.5)*18, sway:5+Math.random()*14,
+    frequency:.0004+Math.random()*.0007,
+    twinkle:.001+Math.random()*.002,
+    radius:.65+Math.random()*1.2,
+    brightness:.35+Math.random()*.3,
+    connect:Math.random()<.65
+  }));
+  let width = 0, height = 0, frame = 0, last = 0, elapsed = 0;
+  let light = document.documentElement.dataset.theme === 'light';
+  const wrap = (value, span) => ((value % span) + span) % span;
+  function draw(time = 0) {
+    if (!width || !height) return;
+    context.clearRect(0, 0, width, height);
+    const color = light ? '153,79,35' : '255,235,212';
+    const seconds=time/1000;
+    const count=Math.min(62,Math.max(25,Math.round(width*height/6500)));
+    const points = stars.slice(0,count).map(star => {
+      const x=wrap(star.x*width+star.vx*seconds+Math.sin(time*star.frequency+star.phase)*star.sway,width+64)-32;
+      const y=wrap(star.y*height+star.vy*seconds+Math.cos(time*star.frequency*.73+star.phase)*star.sway,height+64)-32;
+      const fade=Math.max(0,Math.min(1,(x+24)/36,(width+24-x)/36,(y+24)/36,(height+24-y)/36));
+      return {x,y,fade,star};
+    });
+    const drawn=new Set();
+    for (let i=0;i<points.length;i++) {
+      const a=points[i];
+      if (!a.star.connect) continue;
+      // Relie apenas os dois vizinhos mais próximos, sem teia uniforme.
+      const neighbors=points.map((b,j)=>({b,j,d:Math.hypot(a.x-b.x,a.y-b.y)}))
+        .filter(n=>n.j!==i && n.d<120).sort((a,b)=>a.d-b.d).slice(0,2);
+      for (const {b,j,d} of neighbors) {
+        const key=Math.min(i,j)+':'+Math.max(i,j);
+        if(drawn.has(key)) continue;
+        drawn.add(key);
+        const breathing=.55+.45*Math.sin(time*.001+a.star.phase+b.star.phase);
+        const alpha=(1-d/120)*.22*breathing*a.fade*b.fade;
+        context.strokeStyle='rgba('+color+','+alpha+')';context.lineWidth=.65;
+        context.beginPath();context.moveTo(a.x,a.y);context.lineTo(b.x,b.y);context.stroke();
+      }
+    }
+    for (const {x,y,fade,star} of points) {
+      const pulse=(Math.sin(time*star.twinkle+star.phase)+1)/2;
+      const alpha=(star.brightness+pulse*.3)*fade;
+      if(star.radius>1.45) {
+        const glow=context.createRadialGradient(x,y,0,x,y,star.radius*4);
+        glow.addColorStop(0,'rgba('+color+','+(alpha*.22)+')');
+        glow.addColorStop(1,'rgba('+color+',0)');
+        context.fillStyle=glow;context.beginPath();context.arc(x,y,star.radius*4,0,Math.PI*2);context.fill();
+      }
+      context.fillStyle='rgba('+color+','+alpha+')';
+      context.beginPath();context.arc(x,y,star.radius*(.85+pulse*.2),0,Math.PI*2);context.fill();
+    }
+  }
+  function tick(now) {
+    if(now-last>=33) { elapsed+=Math.min(now-last,50);last=now;draw(elapsed); }
+    frame=requestAnimationFrame(tick);
+  }
+  function sync() {
+    cancelAnimationFrame(frame);
+    draw(elapsed);
+    if (!motion.matches && !document.hidden) { last = performance.now(); frame = requestAnimationFrame(tick); }
+  }
+  new ResizeObserver(([entry]) => {
+    width = entry.contentRect.width; height = entry.contentRect.height;
+    const ratio = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
+    context.setTransform(ratio,0,0,ratio,0,0); draw(elapsed);
+  }).observe(canvas.parentElement);
+  new MutationObserver(() => { light = document.documentElement.dataset.theme === 'light'; draw(elapsed); }).observe(document.documentElement, {attributes:true,attributeFilter:['data-theme']});
+  motion.addEventListener('change', sync);
+  document.addEventListener('visibilitychange', sync);
+  sync();
+})();
+</script>
+  <script>
+(() => {
+  const help = document.getElementById('helpDialog');
+  const accountTrigger = document.getElementById('accountTrigger');
+  const notificationTrigger = document.getElementById('notificationTrigger');
+  const account = document.getElementById('accountMenu');
+  const notifications = document.getElementById('notificationPanel');
+  function closePopovers() { account.hidden = true; notifications.hidden = true; accountTrigger.setAttribute('aria-expanded','false'); notificationTrigger.setAttribute('aria-expanded','false'); }
+  function openDialog(dialog) { closePopovers(); if (!dialog.open) dialog.showModal(); }
+  document.getElementById('helpTrigger').addEventListener('click', () => openDialog(help));
+  document.querySelector('.module-grid').addEventListener('click', event => { if(event.target.closest('[data-help]')) { event.preventDefault(); openDialog(help); } });
+  for (const [trigger,panel] of [[accountTrigger,account],[notificationTrigger,notifications]]) {
+    trigger.addEventListener('click', () => { const opening = panel.hidden; closePopovers(); panel.hidden = !opening; trigger.setAttribute('aria-expanded',String(opening)); });
+  }
+  document.addEventListener('click', event => { if (!event.target.closest('.account-wrap,.notification-wrap')) closePopovers(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') { if (!account.hidden) accountTrigger.focus(); else if (!notifications.hidden) notificationTrigger.focus(); closePopovers(); } });
+  document.querySelectorAll('[data-dialog]').forEach(button => button.addEventListener('click', () => openDialog(document.getElementById(button.dataset.dialog))));
+  document.querySelectorAll('dialog').forEach(dialog => {
+    dialog.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => dialog.close()));
+    dialog.addEventListener('click', event => { const rect = dialog.getBoundingClientRect(); if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close(); });
+  });
+  document.querySelectorAll('[data-scroll]').forEach(button => button.addEventListener('click', () => { help.close(); const target = document.getElementById(button.dataset.scroll); target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',block:'start'}); target.focus({preventScroll:true}); }));
+  document.querySelectorAll('[data-theme-choice]').forEach(button => button.addEventListener('click', () => { const theme = button.dataset.themeChoice; if ((document.documentElement.dataset.theme || 'dark') !== theme) document.getElementById('themeToggle').click(); }));
+  const welcome = document.querySelector('.welcome');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let pending = 0;
+  function reset() { cancelAnimationFrame(pending); welcome.style.setProperty('--pointer-x','0px'); welcome.style.setProperty('--pointer-y','0px'); }
+  welcome.addEventListener('pointermove', event => {
+    if (motion.matches || event.pointerType !== 'mouse') return;
+    const rect = welcome.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width - .5) * 48;
+    const y = ((event.clientY - rect.top) / rect.height - .5) * 32;
+    cancelAnimationFrame(pending);
+    pending = requestAnimationFrame(() => { welcome.style.setProperty('--pointer-x',x.toFixed(2)+'px'); welcome.style.setProperty('--pointer-y',y.toFixed(2)+'px'); });
+  });
+  welcome.addEventListener('pointerleave',reset); motion.addEventListener('change',reset);
+})();
+</script>
+  <script>
+(() => {
+  // Combinações demonstrativas de acesso, por empresa.
+  const access = {
+    'A3 Consultoria':[true,false,true],
+    'Empresa 1':[true,true,false],
+    'Empresa 2':[false,true,false],
+    'TECPAV':[false,true,true]
+  };
+  const cards=[...document.querySelectorAll('.module')];
+  const chips=[...document.querySelectorAll('.chip')];
+  const count=document.querySelector('.count');
+  count.setAttribute('aria-live','polite');
+  count.setAttribute('aria-atomic','true');
+  function selectCompany(chip) {
+    const company=chip.textContent.trim();
+    const permissions=access[company];
+    chips.forEach(button=>{ const active=button===chip;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active)); });
+    document.querySelector('#modules h2').textContent='Módulos · '+company;
+    cards.forEach((card,index)=>{
+      const enabled=permissions[index];
+      const title=card.querySelector('h3').textContent;
+      card.classList.toggle('open',enabled);card.classList.toggle('locked',!enabled);
+      card.querySelector('.status').innerHTML=enabled ? '<i class="dot"></i>Acesso liberado' : '<i data-lucide="lock-keyhole"></i> Acesso restrito';
+      const link=card.querySelector('a');
+      if(enabled) {
+        link.removeAttribute('data-help');link.setAttribute('href','#');
+        link.setAttribute('aria-label','Acessar módulo '+title);
+        link.innerHTML='Acessar módulo <i data-lucide="arrow-right"></i>';
+      } else {
+        link.setAttribute('data-help','');link.setAttribute('href','#ajuda');
+        link.setAttribute('aria-label','Ajuda para acessar '+title);
+        link.innerHTML='Fale com o administrador <i data-lucide="lock-keyhole"></i>';
+      }
+    });
+    const total=permissions.filter(Boolean).length;
+    count.replaceChildren();
+    const value=document.createElement('strong');value.textContent=total;
+    count.append(value,document.createTextNode(total===1?'módulo disponível':'módulos disponíveis'));
+    window.lucide?.createIcons();
+  }
+  chips.forEach(chip=>chip.addEventListener('click',()=>selectCompany(chip)));
+  selectCompany(document.querySelector('.chip.active'));
+})();
+</script>
   </body>
 </html>
