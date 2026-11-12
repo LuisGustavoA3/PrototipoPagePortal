@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -121,12 +121,48 @@
       .welcome > .constellation { transform:translate3d(var(--pointer-x),var(--pointer-y),0) scale(1.14); transition:transform .25s ease-out; }
       .welcome > .welcome-logo { transition:transform .25s ease-out; }
       @media (prefers-reduced-motion:reduce) { .welcome > .constellation,.welcome > .welcome-logo { transform:none; transition:none; } }
+          .avatar:hover,.avatar[aria-expanded="true"] { transform:translateY(-2px); border-color:var(--accent); background:var(--surface-2); }
+      @media (prefers-reduced-motion:reduce) { .avatar { transition:none; } .avatar:hover,.avatar[aria-expanded="true"] { transform:none; } }
+
+      /* Profundidade dos cards conforme o tema. */
+      :root { --card-shadow:0 0 0 1px rgba(255,160,90,.06),0 0 28px rgba(255,116,32,.14),0 10px 26px rgba(0,0,0,.22); --card-shadow-hover:0 0 0 1px rgba(255,160,90,.14),0 0 36px rgba(255,116,32,.24),0 14px 32px rgba(0,0,0,.26); }
+      [data-theme="light"] { --card-shadow:0 5px 12px rgba(60,44,27,.08),0 12px 28px rgba(60,44,27,.11); --card-shadow-hover:0 7px 16px rgba(60,44,27,.10),0 18px 34px rgba(60,44,27,.15); }
+      .welcome,.module,.admin,.help-content { box-shadow:var(--card-shadow); }
+      .module:hover,.module:focus-within { box-shadow:var(--card-shadow-hover); }
+          /* Mais respiro vertical entre seções e dentro dos cards. */
+      .welcome { padding-top:44px; padding-bottom:36px; }
+      .company-switch { margin-top:44px; padding-top:22px; }
+      .section-head { margin-top:44px; margin-bottom:24px; }
+      .module-grid { row-gap:24px; }
+      .module { min-height:280px; padding-top:30px; padding-bottom:30px; }
+      .module .status { margin-top:28px; }
+      .module a { margin-top:28px; }
+      .admin { margin-top:28px; padding-top:26px; padding-bottom:26px; }
+      @media (max-width:800px) { .welcome { padding-top:34px; padding-bottom:32px; } .company-switch { margin-top:32px; padding-top:20px; } .section-head { margin-top:36px; } .module { min-height:270px; } }
+          .welcome > .constellation { transform:none; transition:none; }
+      .welcome > .welcome-logo { --pointer-x:0px; --pointer-y:0px; }
+          [data-theme="light"] { --bg:#faf4e8; --surface:#fffdf8; --surface-2:#f8f0e3; --line:#e8ddcd; }
+          /* Módulos restritos em cinzas neutros, sem transparência sobre o fundo. */
+      .module.locked { opacity:1; background:#1c1d20; border-color:#3b3c41; }
+      .module.locked h3 { color:#bcbec4; }
+      .module.locked p,.module.locked .status,.module.locked a { color:#9699a2; }
+      .module.locked .iconbox { background:#25262a; border-color:#3b3c41; color:#a3a6ae; }
+      .module.locked:hover,.module.locked:focus-within { border-color:#8e9199; }
+      [data-theme="light"] .module.locked { background:#f0f0f0; border-color:#d6d6d6; }
+      [data-theme="light"] .module.locked h3 { color:#626262; }
+      [data-theme="light"] .module.locked p,[data-theme="light"] .module.locked .status,[data-theme="light"] .module.locked a { color:#707070; }
+      [data-theme="light"] .module.locked .iconbox { background:#e6e6e6; border-color:#d2d2d2; color:#7b7b7b; }
+      [data-theme="light"] .module.locked:hover,[data-theme="light"] .module.locked:focus-within { border-color:#9a9a9a; }
+      .welcome > .welcome-logo { transform:none; transition:none; }
+      .welcome-logo img { animation:logo-clockwise 120s linear infinite; transform-origin:center; }
+      @keyframes logo-clockwise { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+      @media (prefers-reduced-motion:reduce) { .welcome-logo img { animation:none; } }
     </style>
   </head>
   <body>
     <main class="shell">
       <header class="topbar"><div class="brand"><div class="brand-logo"><img class="logo-light" src="assets/images/a3digital.svg" alt="A3 Digital" width="132" height="56" /><img class="logo-dark" src="assets/images/a3digital-dark.svg" alt="A3 Digital" width="132" height="56" /></div><div class="divider"></div><span class="portal">PORTAL</span></div><div class="actions"><button class="theme help-trigger" id="helpTrigger" aria-label="Ajuda e instruções" aria-haspopup="dialog">?</button><div class="notification-wrap"><button class="theme" id="notificationTrigger" aria-label="Notificações" aria-expanded="false" aria-controls="notificationPanel"><i data-lucide="bell"></i></button><section class="popover notification-panel" id="notificationPanel" aria-labelledby="notificationTitle" hidden><h2 id="notificationTitle">Notificações</h2><div class="empty-notifications"><i data-lucide="bell"></i><p>Nenhuma notificação por enquanto.</p><small>As novidades do portal aparecerão aqui.</small></div></section></div><button class="theme" id="themeToggle" aria-label="Alternar tema">☼</button><div class="account-wrap"><button class="avatar" id="accountTrigger" aria-expanded="false" aria-controls="accountMenu"><b>LG</b><span>Luis Gustavo<small>Consultor A3</small></span></button><div class="popover account-menu" id="accountMenu" hidden><div class="account-summary"><strong>Luis Gustavo</strong><small>Consultor A3</small></div><button data-dialog="profileDialog"><i data-lucide="user-round"></i>Perfil</button><button data-dialog="preferencesDialog"><i data-lucide="settings-2"></i>Preferências</button><button data-dialog="signoutDialog" class="signout"><i data-lucide="log-out"></i>Sair</button></div></div></div></header>
-      <section class="welcome"><canvas class="constellation" aria-hidden="true"></canvas><div class="eyebrow">Portal A3 Digital</div><h1>Bem-vindo ao Portal A3</h1><p>Escolha um ambiente para organizar pessoas, conhecimento e resultados.</p><div class="welcome-logo" aria-hidden="true"><img class="logo-light" src="assets/images/a3digital-cube.svg" alt="" width="190" height="190" /><img class="logo-dark" src="assets/images/a3digital-cube-dark.svg" alt="" width="190" height="190" /></div><div class="company-switch"><span>Selecione empresa</span><div class="chips"><button class="chip active">A3 Consultoria</button><button class="chip">Empresa 1</button><button class="chip">Empresa 2</button><button class="chip">TECPAV</button></div></div></section>
+      <section class="welcome"><canvas class="constellation" aria-hidden="true"></canvas><div class="eyebrow">Portal A3 Digital</div><h1>Bem-vindo ao Portal A3</h1><p>Escolha um ambiente para organizar pessoas, conhecimento e resultados.</p><div class="welcome-logo" aria-hidden="true"><img src="assets/images/a3digital-cube-animated.svg" alt="" width="190" height="190" /></div><div class="company-switch"><span>Selecione empresa</span><div class="chips"><button class="chip active">A3 Consultoria</button><button class="chip">Empresa 1</button><button class="chip">Empresa 2</button><button class="chip">TECPAV</button></div></div></section>
       <section id="modules" tabindex="-1"><div class="section-head"><div><div class="eyebrow">Seu ambiente</div><h2>Módulos da A3 Consultoria</h2><p>Cada módulo é uma peça que completa a sua gestão.</p></div><div class="count"><strong>3</strong>módulos disponíveis</div></div>
       <div class="module-grid">
         <article class="module open"><div class="iconbox"><i data-lucide="handshake"></i></div><div class="status"><i class="dot"></i>Acesso liberado</div><h3>Mentorias</h3><p>Desenvolvimento guiado por jornadas, sessões e planos de ação.</p><a href="#" aria-label="Acessar módulo Mentorias">Acessar módulo <i data-lucide="arrow-right"></i></a></article>
@@ -140,7 +176,7 @@
     <dialog id="preferencesDialog" class="portal-dialog compact-dialog" aria-labelledby="preferencesTitle"><div class="dialog-header"><h2 id="preferencesTitle">Preferências</h2><button class="dialog-close" data-close aria-label="Fechar preferências">×</button></div><p>Escolha a aparência do portal.</p><div class="dialog-actions"><button data-theme-choice="light">Tema claro</button><button data-theme-choice="dark">Tema escuro</button></div></dialog>
     <dialog id="signoutDialog" class="portal-dialog compact-dialog" aria-labelledby="signoutTitle"><div class="dialog-header"><h2 id="signoutTitle">Sair do portal</h2><button class="dialog-close" data-close aria-label="Fechar">×</button></div><p>O encerramento de sessão estará disponível quando o acesso à conta estiver conectado.</p><div class="dialog-actions"><button data-close>Voltar ao portal</button></div></dialog>
 
-    <script src="https://unpkg.com/lucide@latest"></script><script>window.lucide?.createIcons();const toggle=document.getElementById('themeToggle'); const saved=localStorage.getItem('a3-theme'); if(saved)document.documentElement.dataset.theme=saved; function draw(){const light=document.documentElement.dataset.theme==='light';toggle.innerHTML=light ? '<svg viewBox="0 0 24 24" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13a9 9 0 1 1-9.9-9.9A7 7 0 0 0 20.9 13Z"/></svg>' : '<i data-lucide="sun"></i>';toggle.title=light?'Ativar modo escuro':'Ativar modo claro';window.lucide?.createIcons();}draw();toggle.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='light'?'dark':'light';localStorage.setItem('a3-theme',document.documentElement.dataset.theme);draw();});</script>
+    <script src="https://unpkg.com/lucide@latest"></script><script>window.lucide?.createIcons();const toggle=document.getElementById('themeToggle'); const saved=localStorage.getItem('a3-theme'); document.documentElement.dataset.theme=(saved==='dark'||saved==='light')?saved:'light'; function draw(){const light=document.documentElement.dataset.theme==='light';toggle.innerHTML=light ? '<svg viewBox="0 0 24 24" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13a9 9 0 1 1-9.9-9.9A7 7 0 0 0 20.9 13Z"/></svg>' : '<i data-lucide="sun"></i>';toggle.title=light?'Ativar modo escuro':'Ativar modo claro';window.lucide?.createIcons();}draw();toggle.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='light'?'dark':'light';localStorage.setItem('a3-theme',document.documentElement.dataset.theme);draw();});</script>
   <script>
 (() => {
   const canvas = document.querySelector('.constellation');
@@ -246,20 +282,8 @@
     dialog.addEventListener('click', event => { const rect = dialog.getBoundingClientRect(); if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close(); });
   });
   document.querySelectorAll('[data-scroll]').forEach(button => button.addEventListener('click', () => { help.close(); const target = document.getElementById(button.dataset.scroll); target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',block:'start'}); target.focus({preventScroll:true}); }));
-  document.querySelectorAll('[data-theme-choice]').forEach(button => button.addEventListener('click', () => { const theme = button.dataset.themeChoice; if ((document.documentElement.dataset.theme || 'dark') !== theme) document.getElementById('themeToggle').click(); }));
-  const welcome = document.querySelector('.welcome');
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  let pending = 0;
-  function reset() { cancelAnimationFrame(pending); welcome.style.setProperty('--pointer-x','0px'); welcome.style.setProperty('--pointer-y','0px'); }
-  welcome.addEventListener('pointermove', event => {
-    if (motion.matches || event.pointerType !== 'mouse') return;
-    const rect = welcome.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - .5) * 48;
-    const y = ((event.clientY - rect.top) / rect.height - .5) * 32;
-    cancelAnimationFrame(pending);
-    pending = requestAnimationFrame(() => { welcome.style.setProperty('--pointer-x',x.toFixed(2)+'px'); welcome.style.setProperty('--pointer-y',y.toFixed(2)+'px'); });
-  });
-  welcome.addEventListener('pointerleave',reset); motion.addEventListener('change',reset);
+  document.querySelectorAll('[data-theme-choice]').forEach(button => button.addEventListener('click', () => { const theme = button.dataset.themeChoice; if ((document.documentElement.dataset.theme || 'light') !== theme) document.getElementById('themeToggle').click(); }));
+
 })();
 </script>
   <script>
