@@ -14,7 +14,7 @@
       button { font:inherit; cursor:pointer; } .shell { max-width:1240px; margin:0 auto; padding:28px 32px 52px; }
       .topbar { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:9px 0 24px; } .brand { display:flex; align-items:center; gap:14px; } .brand-mark { width:44px; height:44px; border-radius:13px; background:var(--ink); color:var(--bg); display:grid; place-items:center; font-family:Manrope; font-weight:800; letter-spacing:-2px; position:relative; } .brand-mark::after { content:'✦'; color:var(--accent); position:absolute; right:-6px; top:-9px; font-size:20px; letter-spacing:0; } .divider { width:1px; height:26px; background:var(--line); } .portal { font-size:12px; letter-spacing:.16em; font-weight:700; color:var(--muted); }
       .actions { display:flex; align-items:center; gap:10px; } .outline, .avatar, .theme { border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:12px; height:40px; transition:.2s transform,.2s border,.2s background; } .outline { padding:0 14px; font-weight:700; font-size:13px; } .outline:hover,.theme:hover { transform:translateY(-2px); border-color:var(--accent); } .theme { width:40px; font-size:18px; } .avatar { display:flex; align-items:center; gap:9px; padding:4px 12px 4px 5px; } .avatar b { width:29px; height:29px; display:grid; place-items:center; border-radius:9px; background:var(--accent); color:white; font-size:11px; }.avatar span { font-size:12px; text-align:left; line-height:1.1; }.avatar small { display:block; color:var(--muted); font-size:10px; margin-top:3px; }
-      .welcome { position:relative; overflow:hidden; background:linear-gradient(112deg,#4d5142 0%,#565646 45%,#60492f 100%); border-radius:22px; padding:38px 40px 28px; min-height:240px; box-shadow:var(--shadow); } .welcome::before { content:''; position:absolute; inset:0; opacity:.21; background-image:linear-gradient(rgba(255,255,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.22) 1px,transparent 1px); background-size:34px 34px; } .welcome::after { content:'✦'; position:absolute; font-size:260px; right:8%; top:-65px; color:rgba(255,116,32,.13); }.welcome > * { position:relative; z-index:1; }.eyebrow { color:#ff9c5c; text-transform:uppercase; letter-spacing:.14em; font-size:11px; font-weight:700; }.welcome h1 { font-family:Manrope; font-size:34px; letter-spacing:-1.5px; margin:9px 0 7px; }.welcome p { margin:0; color:#f1e8dc; font-size:15px; }.company-switch { display:flex; justify-content:space-between; align-items:center; margin-top:37px; padding-top:17px; border-top:1px solid rgba(255,255,255,.16); gap:16px; }.company-switch span { font-size:12px; font-weight:700; }.chips { display:flex; gap:8px; flex-wrap:wrap; }.chip { background:rgba(25,28,23,.27); border:1px solid rgba(255,255,255,.22); color:white; padding:8px 13px; border-radius:10px; font-weight:700; font-size:12px; transition:.2s; }.chip:hover,.chip.active { background:var(--accent); border-color:var(--accent); transform:translateY(-2px); }
+      .welcome { position:relative; overflow:hidden; background:linear-gradient(to left,#88532f 0%,#59412e 35%,#30302b 70%,#24272a 100%); border-radius:22px; padding:38px 40px 28px; min-height:240px; box-shadow:var(--shadow); } .welcome::before { content:''; position:absolute; inset:0; opacity:.21; background-image:linear-gradient(rgba(255,255,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.22) 1px,transparent 1px); background-size:34px 34px; } .welcome::after { content:'✦'; position:absolute; font-size:260px; right:8%; top:-65px; color:rgba(255,116,32,.13); }.welcome > * { position:relative; z-index:1; }.eyebrow { color:#ff9c5c; text-transform:uppercase; letter-spacing:.14em; font-size:11px; font-weight:700; }.welcome h1 { font-family:Manrope; font-size:34px; letter-spacing:-1.5px; margin:9px 0 7px; }.welcome p { margin:0; color:#f1e8dc; font-size:15px; }.company-switch { display:flex; justify-content:space-between; align-items:center; margin-top:37px; padding-top:17px; border-top:1px solid rgba(255,255,255,.16); gap:16px; }.company-switch span { font-size:12px; font-weight:700; }.chips { display:flex; gap:8px; flex-wrap:wrap; }.chip { background:rgba(25,28,23,.27); border:1px solid rgba(255,255,255,.22); color:white; padding:8px 13px; border-radius:10px; font-weight:700; font-size:12px; transition:.2s; }.chip:hover,.chip.active { background:var(--accent); border-color:var(--accent); transform:translateY(-2px); }
       .section-head { display:flex; align-items:end; justify-content:space-between; margin:36px 0 18px; }.section-head h2 { font-family:Manrope; margin:4px 0 0; font-size:23px; letter-spacing:-.8px; }.section-head p { color:var(--muted); margin:5px 0 0; font-size:14px; }.count { text-align:right; color:var(--muted); font-size:12px; }.count strong { display:block; color:var(--accent); font-size:25px; font-family:Manrope; }
       .module-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
       .module { position:relative; min-width:0; min-height:255px; padding:24px; border:1px solid var(--line); background:var(--surface); border-radius:18px; transition:transform .25s,box-shadow .25s,border-color .25s; }
@@ -38,7 +38,7 @@
       .welcome > h1 { animation-delay:.08s; }
       .welcome > p { animation-delay:.16s; }
       [data-theme="light"] { --olive:#ec914a; --ink:#252525; --muted:#6c6863; --line:#e5dfd8; --accent-soft:#b74908; }
-      [data-theme="light"] .welcome { background:linear-gradient(112deg,#fff8f0 0%,#ffe8d1 55%,#ffd2ad 100%); color:#442810; }
+      [data-theme="light"] .welcome { background:linear-gradient(to left,#f2ac6680 0%,#f5c18a55 35%,#ffdab32b 65%,#fff9f1 100%); color:#442810; }
       [data-theme="light"] .welcome p { color:#765235; }
       [data-theme="light"] .welcome .eyebrow { color:#ae4406; }
       [data-theme="light"] .welcome::before { background-image:linear-gradient(rgba(170,85,26,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(170,85,26,.16) 1px,transparent 1px); }
@@ -126,7 +126,7 @@
 
       /* Profundidade dos cards conforme o tema. */
       :root { --card-shadow:0 0 0 1px rgba(255,160,90,.06),0 0 28px rgba(255,116,32,.14),0 10px 26px rgba(0,0,0,.22); --card-shadow-hover:0 0 0 1px rgba(255,160,90,.14),0 0 36px rgba(255,116,32,.24),0 14px 32px rgba(0,0,0,.26); }
-      [data-theme="light"] { --card-shadow:0 5px 12px rgba(60,44,27,.08),0 12px 28px rgba(60,44,27,.11); --card-shadow-hover:0 7px 16px rgba(60,44,27,.10),0 18px 34px rgba(60,44,27,.15); }
+      [data-theme="light"] { --card-shadow:0 4px 10px rgba(60,44,27,.05),0 9px 22px rgba(60,44,27,.07); --card-shadow-hover:0 6px 14px rgba(60,44,27,.07),0 14px 28px rgba(60,44,27,.10); }
       .welcome,.module,.admin,.help-content { box-shadow:var(--card-shadow); }
       .module:hover,.module:focus-within { box-shadow:var(--card-shadow-hover); }
           /* Mais respiro vertical entre seções e dentro dos cards. */
@@ -157,12 +157,45 @@
       .welcome-logo img { animation:logo-clockwise 120s linear infinite; transform-origin:center; }
       @keyframes logo-clockwise { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
       @media (prefers-reduced-motion:reduce) { .welcome-logo img { animation:none; } }
+          .welcome { min-height:300px; }
+      .welcome h1 { color:#ff9c45; text-shadow:none; }
+      [data-theme="light"] .welcome h1 { color:#c65b0a; }
+      @media (max-width:800px) { .welcome { min-height:320px; padding-top:40px; padding-bottom:38px; } }
+          /* Reserva espaço para o símbolo, inclusive durante a rotação. */
+      .company-switch { margin-top:56px; }
+      @media (min-width:801px) { .company-switch { margin-top:56px; } .welcome > p { min-height:44px; } }
+      @media (max-width:800px) { .company-switch { margin-top:36px; } .welcome > .welcome-logo { margin-bottom:26px; } }
+          .welcome { box-shadow:none; }
+      [data-theme="light"] .welcome { box-shadow:0 6px 14px rgba(50,35,21,.12),0 16px 32px rgba(50,35,21,.17); }
+
+      /* Transição entre camadas: gradientes não interpolam diretamente no CSS. */
+      .welcome,[data-theme="light"] .welcome { isolation:isolate; background:transparent; transition:color .35s ease,box-shadow .35s ease; }
+      .welcome::before,.welcome::after { content:''; position:absolute; inset:0; top:0; right:0; width:100%; height:100%; z-index:-1; border-radius:inherit; pointer-events:none; transform:none; animation:none; background-size:auto; }
+      .welcome::before,[data-theme="light"] .welcome::before { opacity:1; background:linear-gradient(to left,#88532f 0%,#59412e 35%,#30302b 70%,#24272a 100%); }
+      .welcome::after { opacity:0; background:#faf4e8 linear-gradient(to left,#f2ac6680 0%,#f5c18a55 35%,#ffdab32b 65%,#fff9f1 100%); transition:opacity .35s ease-in-out; }
+      [data-theme="light"] .welcome::after { opacity:1; }
+      .welcome h1,.welcome p,.welcome .eyebrow { transition:color .35s ease; }
+      .company-switch { transition:border-color .35s ease; }
+      @media (prefers-reduced-motion:reduce) { .welcome,.welcome::after,.welcome h1,.welcome p,.welcome .eyebrow,.company-switch { transition:none; } }
+          /* Um único recorte arredondado evita a fresta entre as camadas. */
+      .welcome::before,.welcome::after { inset:-2px; top:-2px; right:-2px; width:auto; height:auto; border:0; border-radius:0; }
+          [data-theme="light"] .welcome-logo img { opacity:1; }
+          /* Áreas estáveis para os dois estados de acesso. */
+      .module { display:flex; flex-direction:column; transition:background-color .35s ease,color .35s ease,border-color .35s ease,box-shadow .35s ease,transform .25s ease; }
+      .module .iconbox { flex-shrink:0; transition:background-color .35s ease,border-color .35s ease,color .35s ease; }
+      .module .status { display:flex; flex-shrink:0; height:22px; min-height:22px; line-height:22px; transition:color .35s ease; }
+      .module h3 { transition:color .35s ease; }
+      .module p { flex:1; transition:color .35s ease; }
+      .module a { display:flex; align-items:center; flex-shrink:0; min-height:44px; line-height:20px; transition:color .35s ease; }
+      .module a svg { flex-shrink:0; }
+      .module .dot { flex-shrink:0; }
+      @media (prefers-reduced-motion:reduce) { .module,.module .iconbox,.module .status,.module h3,.module p,.module a { transition:none; } }
     </style>
   </head>
   <body>
     <main class="shell">
       <header class="topbar"><div class="brand"><div class="brand-logo"><img class="logo-light" src="assets/images/a3digital.svg" alt="A3 Digital" width="132" height="56" /><img class="logo-dark" src="assets/images/a3digital-dark.svg" alt="A3 Digital" width="132" height="56" /></div><div class="divider"></div><span class="portal">PORTAL</span></div><div class="actions"><button class="theme help-trigger" id="helpTrigger" aria-label="Ajuda e instruções" aria-haspopup="dialog">?</button><div class="notification-wrap"><button class="theme" id="notificationTrigger" aria-label="Notificações" aria-expanded="false" aria-controls="notificationPanel"><i data-lucide="bell"></i></button><section class="popover notification-panel" id="notificationPanel" aria-labelledby="notificationTitle" hidden><h2 id="notificationTitle">Notificações</h2><div class="empty-notifications"><i data-lucide="bell"></i><p>Nenhuma notificação por enquanto.</p><small>As novidades do portal aparecerão aqui.</small></div></section></div><button class="theme" id="themeToggle" aria-label="Alternar tema">☼</button><div class="account-wrap"><button class="avatar" id="accountTrigger" aria-expanded="false" aria-controls="accountMenu"><b>LG</b><span>Luis Gustavo<small>Consultor A3</small></span></button><div class="popover account-menu" id="accountMenu" hidden><div class="account-summary"><strong>Luis Gustavo</strong><small>Consultor A3</small></div><button data-dialog="profileDialog"><i data-lucide="user-round"></i>Perfil</button><button data-dialog="preferencesDialog"><i data-lucide="settings-2"></i>Preferências</button><button data-dialog="signoutDialog" class="signout"><i data-lucide="log-out"></i>Sair</button></div></div></div></header>
-      <section class="welcome"><canvas class="constellation" aria-hidden="true"></canvas><div class="eyebrow">Portal A3 Digital</div><h1>Bem-vindo ao Portal A3</h1><p>Escolha um ambiente para organizar pessoas, conhecimento e resultados.</p><div class="welcome-logo" aria-hidden="true"><img src="assets/images/a3digital-cube-animated.svg" alt="" width="190" height="190" /></div><div class="company-switch"><span>Selecione empresa</span><div class="chips"><button class="chip active">A3 Consultoria</button><button class="chip">Empresa 1</button><button class="chip">Empresa 2</button><button class="chip">TECPAV</button></div></div></section>
+      <section class="welcome"><canvas class="constellation" aria-hidden="true"></canvas><div class="eyebrow">Portal A3 Digital</div><h1>Bem-vindo ao Portal A3</h1><p>Escolha um ambiente para organizar pessoas, conhecimento e resultados.</p><div class="welcome-logo" aria-hidden="true"><img class="logo-light" src="assets/images/a3digital-cube-animated-light.svg" alt="" width="190" height="190" /><img class="logo-dark" src="assets/images/a3digital-cube-animated.svg" alt="" width="190" height="190" /></div><div class="company-switch"><span>Selecione empresa</span><div class="chips"><button class="chip active">A3 Consultoria</button><button class="chip">Empresa 1</button><button class="chip">Empresa 2</button><button class="chip">TECPAV</button></div></div></section>
       <section id="modules" tabindex="-1"><div class="section-head"><div><div class="eyebrow">Seu ambiente</div><h2>Módulos da A3 Consultoria</h2><p>Cada módulo é uma peça que completa a sua gestão.</p></div><div class="count"><strong>3</strong>módulos disponíveis</div></div>
       <div class="module-grid">
         <article class="module open"><div class="iconbox"><i data-lucide="handshake"></i></div><div class="status"><i class="dot"></i>Acesso liberado</div><h3>Mentorias</h3><p>Desenvolvimento guiado por jornadas, sessões e planos de ação.</p><a href="#" aria-label="Acessar módulo Mentorias">Acessar módulo <i data-lucide="arrow-right"></i></a></article>
